@@ -1,11 +1,11 @@
-# Aakanshya Thapa Portfolio — Production v8
+# Aakanshya Thapa Portfolio — Production v9 Scroll Navigator Fix
 
-Final production build for aakanshyathapa.com.
-
-- Wide, light mint-green active navigator matching the View Experience button.
-- Home is highlighted on first paint.
-- Active section has a CSS fail-safe highlight, so the navigator cannot disappear if JS initializes late.
-- Once initialized, the smooth shared 520 ms liquid indicator takes over.
-- 42px-high pills with 18px horizontal padding retained.
-- Clean inactive navigation and matching hover behavior retained.
-- Production CNAME/canonical/indexing/robots/sitemap retained.
+- Fixes navigator staying on Home.
+- Active section is now derived from each section's live viewport rectangle.
+- Scroll updates are throttled through requestAnimationFrame.
+- The light mint 42px-wide liquid navigator follows Home/About/Experience/Projects/Skills/Honors/Contact.
+- Bottom-of-page logic forces Contact active.
+- 520 ms liquid movement retained.
+- Removed hard-coded Home active state from HTML.
+- CSS and JS cache-busted for production deployment.
+- Production domain/search configuration retained.

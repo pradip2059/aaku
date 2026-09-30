@@ -46,22 +46,38 @@ function positionLiquidIndicator(link, instant=false){
   }
 }
 
-function updateActiveNav(){
-  let current=sections[0]?.id || "home";
+function getCurrentSection(){
+  if(!sections.length) return "home";
 
-  const nearBottom=
-    window.innerHeight + window.scrollY >=
-    document.documentElement.scrollHeight - 8;
-
-  if(nearBottom && sections.length){
-    current=sections[sections.length-1].id;
-  }else{
-    sections.forEach(s=>{
-      if(window.scrollY>=s.offsetTop-135) current=s.id;
-    });
+  // At the bottom, force the last section so Contact can become active.
+  if(window.innerHeight + window.scrollY >=
+     document.documentElement.scrollHeight - 12){
+    return sections[sections.length-1].id;
   }
 
+  // Probe just below the fixed navbar. The section occupying this line
+  // is the section the user is currently reading.
+  const navHeight=navBar?.getBoundingClientRect().height || 0;
+  const probeY=Math.min(window.innerHeight-1, navHeight + 42);
+
+  let current=sections[0].id;
+  for(const section of sections){
+    const rect=section.getBoundingClientRect();
+    if(rect.top <= probeY && rect.bottom > probeY){
+      current=section.id;
+      break;
+    }
+    if(rect.top <= probeY){
+      current=section.id;
+    }
+  }
+  return current;
+}
+
+function updateActiveNav(){
+  const current=getCurrentSection();
   let activeLink=null;
+
   navLinks.forEach(a=>{
     const active=a.getAttribute("href")==="#"+current;
     a.classList.toggle("active",active);
@@ -71,13 +87,32 @@ function updateActiveNav(){
   positionLiquidIndicator(activeLink);
 }
 
-window.addEventListener("scroll",updateActiveNav,{passive:true});
+let navTick=false;
+function requestNavUpdate(){
+  if(navTick) return;
+  navTick=true;
+  requestAnimationFrame(()=>{
+    updateActiveNav();
+    navTick=false;
+  });
+}
+
+window.addEventListener("scroll",requestNavUpdate,{passive:true});
 window.addEventListener("resize",()=>{
   updateActiveNav();
-  positionLiquidIndicator(navLinks.find(a=>a.classList.contains("active")),true);
+  positionLiquidIndicator(
+    navLinks.find(a=>a.classList.contains("active")),
+    true
+  );
 },{passive:true});
 
-updateActiveNav();
-requestAnimationFrame(()=>{
-  positionLiquidIndicator(navLinks.find(a=>a.classList.contains("active")),true);
+window.addEventListener("load",()=>{
+  updateActiveNav();
+  positionLiquidIndicator(
+    navLinks.find(a=>a.classList.contains("active")),
+    true
+  );
 });
+
+updateActiveNav();
+requestAnimationFrame(()=>updateActiveNav());
