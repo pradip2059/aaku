@@ -451,3 +451,55 @@ body{
     border-radius:16px !important;
   }
 }
+
+
+/* =========================================================
+   PRODUCTION v8 — ALWAYS-VISIBLE LIGHT GREEN NAVIGATOR
+   ========================================================= */
+@media (min-width:901px){
+  /* Fail-safe: active section is visibly highlighted even before/without JS. */
+  .links a[href^="#"].active{
+    min-height:42px !important;
+    padding:0 18px !important;
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    color:#07110f !important;
+    background:
+      linear-gradient(135deg,
+        rgba(116, 207, 184, .96),
+        rgba(92, 184, 160, .92)) !important;
+    border:1px solid rgba(194,255,240,.48) !important;
+    border-radius:16px !important;
+    box-shadow:
+      0 8px 24px rgba(18,185,153,.20),
+      inset 0 1px 0 rgba(255,255,255,.30) !important;
+  }
+
+  /* Shared moving navigator: same wide geometry and light View-Experience mint. */
+  .at-liquid-indicator{
+    display:block !important;
+    z-index:1 !important;
+    border-radius:16px !important;
+    background:
+      linear-gradient(135deg,
+        rgba(116, 207, 184, .96),
+        rgba(92, 184, 160, .92)) !important;
+    border:1px solid rgba(194,255,240,.48) !important;
+    box-shadow:
+      0 8px 24px rgba(18,185,153,.20),
+      inset 0 1px 0 rgba(255,255,255,.30) !important;
+    backdrop-filter:blur(20px) saturate(165%) !important;
+    -webkit-backdrop-filter:blur(20px) saturate(165%) !important;
+  }
+
+  /* Only after JS confirms the moving indicator is positioned do we let
+     the shared indicator replace the fail-safe active background. */
+  .nav.indicator-ready .links a[href^="#"].active,
+  .nav.indicator-ready .links a[href^="#"].active:hover{
+    background:transparent !important;
+    border-color:transparent !important;
+    box-shadow:none !important;
+    color:#07110f !important;
+  }
+}

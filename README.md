@@ -1,11 +1,11 @@
-# Aakanshya Thapa Portfolio — Liquid Glass Production v7
+# Aakanshya Thapa Portfolio — Production v8
 
-Production build for aakanshyathapa.com, promoted directly from the approved TEST v7.
+Final production build for aakanshyathapa.com.
 
-- Wider 42px-high desktop/tablet liquid navigation pills.
-- 18px horizontal padding around section labels.
-- Active and hover states use matching geometry.
-- Centered labels and smooth 520 ms emerald liquid glide retained.
-- Clean inactive navigation and outlined Resume action retained.
-- Charcoal / emerald / gold identity preserved.
-- Production CNAME, canonical URL, indexing, robots.txt, and sitemap restored.
+- Wide, light mint-green active navigator matching the View Experience button.
+- Home is highlighted on first paint.
+- Active section has a CSS fail-safe highlight, so the navigator cannot disappear if JS initializes late.
+- Once initialized, the smooth shared 520 ms liquid indicator takes over.
+- 42px-high pills with 18px horizontal padding retained.
+- Clean inactive navigation and matching hover behavior retained.
+- Production CNAME/canonical/indexing/robots/sitemap retained.
