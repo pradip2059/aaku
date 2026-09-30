@@ -286,3 +286,168 @@ body{
     will-change:transform,width,height;
   }
 }
+
+
+/* =========================================================
+   AAKANSHYA LIQUID GLASS TEST v3 — CLEAN NAV + ACTIVE BAR
+   Text-only at rest; emerald glass on hover; shared active
+   liquid indicator restored and kept visible.
+   ========================================================= */
+@media (min-width:901px){
+  /* Normal section links are clean text only. */
+  .links a[href^="#"]:not(.resume-nav){
+    background:transparent !important;
+    border-color:transparent !important;
+    box-shadow:none !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+  }
+
+  /* Hover/focus gets a subtle emerald glass capsule. */
+  .links a[href^="#"]:not(.resume-nav):not(.active):hover,
+  .links a[href^="#"]:not(.resume-nav):not(.active):focus-visible{
+    background:
+      linear-gradient(135deg,
+        rgba(91,190,166,.20),
+        rgba(29,119,102,.14)) !important;
+    border:1px solid rgba(138,224,204,.27) !important;
+    box-shadow:
+      0 7px 20px rgba(11,90,73,.15),
+      inset 0 1px 0 rgba(255,255,255,.11) !important;
+    backdrop-filter:blur(14px) saturate(145%) !important;
+    -webkit-backdrop-filter:blur(14px) saturate(145%) !important;
+    border-radius:14px !important;
+  }
+
+  /* Restore the moving active bar/pill and keep it above the nav glass. */
+  .at-liquid-indicator{
+    display:block !important;
+    z-index:2 !important;
+    opacity:0;
+    border-radius:14px !important;
+    background:
+      linear-gradient(135deg,
+        rgba(105,211,184,.78),
+        rgba(49,157,137,.64)) !important;
+    border:1px solid rgba(202,255,243,.34) !important;
+    box-shadow:
+      0 8px 24px rgba(18,185,153,.17),
+      inset 0 1px 0 rgba(255,255,255,.28),
+      inset 0 -1px 0 rgba(8,72,62,.09) !important;
+    backdrop-filter:blur(20px) saturate(175%) !important;
+    -webkit-backdrop-filter:blur(20px) saturate(175%) !important;
+    transition:
+      transform 520ms cubic-bezier(.16,1,.3,1),
+      width 520ms cubic-bezier(.16,1,.3,1),
+      height 520ms cubic-bezier(.16,1,.3,1),
+      opacity 140ms ease !important;
+    will-change:transform,width,height;
+  }
+  .at-liquid-indicator.visible{opacity:1 !important;}
+
+  /* Links sit above the moving glass pill. */
+  .links a{z-index:3 !important;}
+
+  /* Active link itself is transparent because the shared pill is behind it. */
+  .nav.indicator-ready .links a[href^="#"].active,
+  .nav.indicator-ready .links a[href^="#"].active:hover{
+    background:transparent !important;
+    border-color:transparent !important;
+    box-shadow:none !important;
+    color:#07110f !important;
+  }
+
+  /* Resume remains a separate outlined action. */
+  .links .resume-nav{
+    border-radius:14px !important;
+  }
+}
+
+
+/* =========================================================
+   TEST v5 — INDICATOR LAYER FIX
+   The v4 pill was above the text. Put the glass behind the
+   navbar content, matching the proven Pradip V18.3 layering.
+   ========================================================= */
+@media (min-width:901px){
+  .nav{
+    overflow:visible !important;
+  }
+
+  .nav-inner{
+    position:relative !important;
+    z-index:2 !important;
+  }
+
+  .at-liquid-indicator{
+    z-index:1 !important;
+    pointer-events:none !important;
+  }
+
+  .links,
+  .links a{
+    position:relative !important;
+    z-index:3 !important;
+  }
+
+  .nav.indicator-ready .links a[href^="#"].active,
+  .nav.indicator-ready .links a[href^="#"].active:hover{
+    color:#07110f !important;
+    opacity:1 !important;
+    text-shadow:none !important;
+  }
+}
+
+
+/* =========================================================
+   TEST v6 — CENTER ACTIVE LABEL INSIDE LIQUID PILL
+   ========================================================= */
+@media (min-width:901px){
+  .links a[href^="#"]{
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    text-align:center !important;
+    line-height:1 !important;
+    box-sizing:border-box !important;
+  }
+
+  .nav.indicator-ready .links a[href^="#"].active{
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    text-align:center !important;
+    line-height:1 !important;
+  }
+}
+
+
+/* =========================================================
+   TEST v7 — WIDER ACTIVE + HOVER PILLS
+   Match the roomier proportions of Pradip's navbar.
+   The moving indicator measures the anchor itself, so active
+   and hover states automatically stay the exact same size.
+   ========================================================= */
+@media (min-width:901px){
+  .links a[href^="#"]:not(.resume-nav){
+    min-height:42px !important;
+    padding:0 18px !important;
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    box-sizing:border-box !important;
+    border-radius:16px !important;
+  }
+
+  .at-liquid-indicator{
+    border-radius:16px !important;
+  }
+
+  /* Hover uses the same anchor box dimensions as the active pill. */
+  .links a[href^="#"]:not(.resume-nav):not(.active):hover,
+  .links a[href^="#"]:not(.resume-nav):not(.active):focus-visible{
+    min-height:42px !important;
+    padding:0 18px !important;
+    border-radius:16px !important;
+  }
+}
