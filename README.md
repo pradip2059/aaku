@@ -1,11 +1,10 @@
-# Aakanshya Thapa — Accounting Portfolio V1 Test
+# Aakanshya Thapa Portfolio — Liquid Glass Final
 
-A dark, responsive accounting portfolio prototype.
+Production build for aakanshyathapa.com.
 
-This test build intentionally includes:
-- `noindex, nofollow`
-- no CNAME/custom domain
-- verified resume content only
-- no coursework section
-
-Open `index.html` locally or deploy to a test GitHub Pages repository.
+- Original charcoal / emerald / gold identity preserved.
+- Liquid-glass surfaces and floating navigation.
+- Smooth shared emerald active-nav indicator.
+- Final active indicator lightened to harmonize with the site's mint/emerald accents.
+- Tablet navigation compaction and mobile glass menu retained.
+- Production CNAME, canonical URL, robots.txt, and sitemap restored.
